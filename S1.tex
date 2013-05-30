@@ -95,12 +95,22 @@ thus, the schedule comes out as 3, 5, 1, 6, 4, 7, 2 with objective value 144
 
 \item{(b)}
 
+At any step of the modified LCL rules, let l' be the job being scheduled. If $l' \not\in L(J)$, then there is at least one job l such that $l' \to l$. In the final schedule being produced, we have job l scheduled before l' which violates the prec constraints. Thus, at each step, given l' is the job being scheduled, we have $l' \in L(J)$.
+
+Assuming the minimum possible $f_{max}$ at each step is v, referring to the proof we have in class, we always have the equation as we proceed with scheduling:
+\begin{equation}
+v \geq \min_{k \in L(J)}{f_{k}(\sigma_{j \in J}p_{j})}
+\end{equation}
+and let J' be any subset of J, we have $v \geq$ the minimum possible $f_{max}$ from scheduling J'.
+
+Thus, \textbf{the modified LCL is making optimal decision at every step which means it's an optimal algorithm for the problem}.
 
 \item{(c)}
+
 Applying modified LCL from the completion time of last job at time $4 + 8 + 12 + 7 + 6 + 9 + 9 = 55$
 \begin{center}
 \begin{tabular}{l*{8}{c}r}
-Jobs          & 1 & 2 & 3 & 4 & 5 & 6 & 7                                         \\
+Jobs          & 1 & 2 & 3 & 4 & 5 & 6 & 7                                                            \\
 \hline
 $f_{j}(x)$    & 165 & 77 & 3025 & 82.5 & $70 + \sqrt{55}$ & 88 & 77               \\
 \end{tabular}
@@ -191,6 +201,8 @@ Driven by the two loops, the inner statements will be executed $\frac{n * (n + 1
     \EndFor
 \EndFor
 \end{algorithmic}
+This algorithm has the same bahavior as the previous one because for every i, j pair, MAX and MIN represents the max and min values from A[i], A[i+1] through A[j]. And B[i, j] is assigned to MAX - MIN for every i, j pair.
+
 Driven by the two loops, the inner statements will be executed $\frac{n * (n + 1)}{2}$ times. And the three statements cost 3 operations. Thus, the running time of this algorithm is bounded by $\Theta(n^{2})$
 
 
@@ -231,13 +243,20 @@ since $f_{j} \leq f'_{j}$ for all j.
 
 Therefore, v = v'and \textbf{S have same object value for {\it I} and {\it I'}}
 
-And now assume S is a schedule produced for {\it I'}, let $J_{m}, J_{n}$ be any pair of jobs such that $J_{m} \to J_{n}$. If $C_{J_{m}} \geq $C_{J_{n}}$, then we must have:
-\begin{equation}
-v' = \max\limits_{j \not\in J'} {f_{j}(C_{j})} \leq \max\limits_{j \in J} {f_{j}(C_{j})} = v
+And now assume S is a schedule produced for {\it I'}, let $J_{m}, J_{n}$ be any pair of jobs such that $J_{m} \to J_{n}$ in {\it I}. If $C_{J_{m}} \geq C_{J_{n}}$, then we must have:
+\begin{equation} \label{eq:condition-for-last}
+f'_{J_{m}}(C_{J_{m}}) \leq f'_{J_{n}}(C_{J_{m}})
 \end{equation}
 
- Since $f'_{J{m}}(t) = \max{f'_{J_{m}}(t), f'_{J_{n}}(t + p_{J_{n}})}$, 
+However, since $f'_{J{m}}(t) = \max{f'_{J_{m}}(t), f'_{J_{n}}(t + p_{J_{n}})}$, $f'_{J{m}}(t) > f'_{J{n}}(t)$ which means equation ~\ref{eq:condition-for-last} is not satisfable. Thus, we have $C_{J_{m}} < C_{J_{n}}$. Therefore, S is a schedule satisfy all precedence requirement from {\it I}. In other words, \textbf{S is a feasible schedule for {\it I}};
+
 \item{(b)}
+
+Follow the procedure defined in part (a) except the function definition part where we have:
+\begin{equation}
+d'_{j} = \min{d'_{j}, d'_{k} - p_{k}}
+\end{equation}
+
 \item{(c)}
 \item{(d)}
 
