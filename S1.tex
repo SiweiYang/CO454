@@ -1,0 +1,274 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\begin{document}
+
+\begin{center}
+\large\bf University of Waterloo\\
+CO~454 --- Scheduling\\
+Spring 2013\\
+Problem Set 1\\
+Siwei \underline{Yang} - 20258568\\
+\end{center}
+\bigskip
+
+\begin{enumerate}
+
+\item{} [\underline{Problem 1}: LCL rule]
+
+\begin{itemize}
+\item{(a)}
+
+Applying LCL from the completion time of last job at time $4 + 8 + 12 + 7 + 6 + 9 + 9 = 55$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 1 & 2 & 3 & 4 & 5 & 6 & 7                                         \\
+\hline
+$f_{j}(x)$    & 165 & 77 & 3025 & 82.5 & $70 + \sqrt{55}$ & 88 & 77               \\
+\end{tabular}
+\end{center}
+picking job 2 with minimum weight at the time
+
+at time $4 + 12 + 7 + 6 + 9 + 9 = 47$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 1 & 3 & 4 & 5 & 6 & 7                                         \\
+\hline
+$f_{j}(x)$    & 141 & 2209 & 70.5 & $70 + \sqrt{47}$ & 75.2 & 65.8            \\
+\end{tabular}
+\end{center}
+picking job 7 with minimum weight at the time
+
+at time $4 + 12 + 7 + 6 + 9 = 38$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 1 & 3 & 4 & 5 & 6                                       \\
+\hline
+$f_{j}(x)$    & 114 & 1444 & 57 & $70 + \sqrt{38}$ & 60.8               \\
+\end{tabular}
+\end{center}
+picking job 4 with minimum weight at the time
+
+at time $4 + 12 + 6 + 9 = 31$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 1 & 3 & 5 & 6                                       \\
+\hline
+$f_{j}(x)$    & 93 & 961 & $70 + \sqrt{31}$ & 49.6               \\
+\end{tabular}
+\end{center}
+picking job 6 with minimum weight at the time
+
+at time $4 + 12 + 6 = 22$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 1 & 3 & 5                                 \\
+\hline
+$f_{j}(x)$    & 66 & 484 & $70 + \sqrt{22}$               \\
+\end{tabular}
+\end{center}
+picking job 1 with minimum weight at the time
+
+at time $12 + 6 = 18$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 3 & 5                                 \\
+\hline
+$f_{j}(x)$    & 324 & $70 + \sqrt{18}$                \\
+\end{tabular}
+\end{center}
+picking job 5 with minimum weight at the time
+
+at time $12 = 12$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 3                      \\
+\hline
+$f_{j}(x)$    & 144                    \\
+\end{tabular}
+\end{center}
+picking job 3 with minimum weight at the time
+
+thus, the schedule comes out as 3, 5, 1, 6, 4, 7, 2 with objective value 144
+
+\item{(b)}
+
+
+\item{(c)}
+Applying modified LCL from the completion time of last job at time $4 + 8 + 12 + 7 + 6 + 9 + 9 = 55$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 1 & 2 & 3 & 4 & 5 & 6 & 7                                         \\
+\hline
+$f_{j}(x)$    & 165 & 77 & 3025 & 82.5 & $70 + \sqrt{55}$ & 88 & 77               \\
+\end{tabular}
+\end{center}
+where J = 2, 3, 4, 6. Picking job 2 with minimum weight at the time
+
+at time $4 + 12 + 7 + 6 + 9 + 9 = 47$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 1 & 3 & 4 & 5 & 6 & 7                                         \\
+\hline
+$f_{j}(x)$    & 141 & 2209 & 70.5 & $70 + \sqrt{47}$ & 75.2 & 65.8            \\
+\end{tabular}
+\end{center}
+where J = 3, 4, 6. Picking job 6 with minimum weight at the time
+
+at time $4 + 12 + 7 + 6 + 9 = 38$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 1 & 3 & 4 & 5 & 7                                       \\
+\hline
+$f_{j}(x)$    & 114 & 1444 & 57 & $70 + \sqrt{38}$ & 53.2               \\
+\end{tabular}
+\end{center}
+where J = 3, 4, 7. Picking job 7 with minimum weight at the time
+
+at time $4 + 12 + 7 + 6 = 29$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 1 & 3 & 4 & 5                                    \\
+\hline
+$f_{j}(x)$    & 87 & 841 & 43.5 & $70 + \sqrt{29}$               \\
+\end{tabular}
+\end{center}
+where J = 1, 3, 4. Picking job 4 with minimum weight at the time
+
+at time $4 + 12 + 6 = 22$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 1 & 3 & 5                                 \\
+\hline
+$f_{j}(x)$    & 66 & 484 & $70 + \sqrt{22}$               \\
+\end{tabular}
+\end{center}
+where J = 1, 3, 5. Picking job 1 with minimum weight at the time
+
+at time $12 + 6 = 18$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 3 & 5                                \\
+\hline
+$f_{j}(x)$    & 324 & $70 + \sqrt{18}$               \\
+\end{tabular}
+\end{center}
+where J = 3, 5. Picking job 5 with minimum weight at the time
+
+at time $12 = 12$
+\begin{center}
+\begin{tabular}{l*{8}{c}r}
+Jobs          & 3                                \\
+\hline
+$f_{j}(x)$    & 144                              \\
+\end{tabular}
+\end{center}
+where J = 3. Picking job 3 with minimum weight at the time
+
+thus, the schedule comes out as 3, 5, 1,4, 7, 6, 2 with objective value 144
+
+\end{itemize}
+
+
+\medskip
+
+\item{} [\underline{Problem 2}: Running time analysis  and O(.) notation]
+
+\begin{itemize}
+\item{(a)}
+Driven by the two loops, the inner statements will be executed $\frac{n * (n + 1)}{2}$ times. And the three statements cost n + 1 operations on average. Thus, the running time of this algorithm is bounded by $\Theta(n^{3})$
+
+\item{(b)}
+\begin{algorithmic}
+\For {i = 1, 2, ..., n}
+    \State initialize MAX, MIN = A[i]
+    \For {j = i, i + 1, ..., n}
+        \State Update MAX if A[j] > MAX
+        \State Update MIN if A[j] < MIN
+        \State Set B[i, j] = MAX - MIN.
+    \EndFor
+\EndFor
+\end{algorithmic}
+Driven by the two loops, the inner statements will be executed $\frac{n * (n + 1)}{2}$ times. And the three statements cost 3 operations. Thus, the running time of this algorithm is bounded by $\Theta(n^{2})$
+
+
+\end{itemize}
+
+\medskip
+
+\item{} [\underline{Problem 3}: $1|prec|f_{max}$ and EDD rules for $1|r_{j}, pmtn|L_{max}$ and $1|r_{j}, pmtn, prec|L_{max}$]
+
+\begin{itemize}
+\item{(a)}
+
+Consider any schedule S for {\it I}, it's objective value v is obtained at:
+\begin{equation}
+v = \max\limits_{j \in J} {f_{j}(C_{j})}
+\end{equation}
+
+And, use the same schedule S for {\it I'}, it's objective value v' is obtained at:
+\begin{equation}
+v' = \max\limits_{j \in J} {f'_{j}(C_{j})}
+\end{equation}
+
+For any pair of jobs $J_{m}, J_{n}$ such that $J_{m} \to J_{n}$, if $f'_{J_{m}}(C_{J_{m}}) \leq f'_{J_{n}}(C_{J_{n}})$ then have $J_{m} \in J'$. Then we easily have:
+\begin{equation}
+v' = \max\limits_{j \in J} {f'_{j}(C_{j})} = \max\limits_{j \not\in J'} {f'_{j}(C_{j})}
+\end{equation}
+
+By observing the definition of f's, we also know that $f'_{j} = f_{j}$ for $j \not\in J'$ because any j such that $f'_{j}(t) = f'_{j'}(t + p_{j'})$ where j' is dependent on j will have $f'_{j}(C_{j}) = f'_{j'}(C_{j} + p_{j'}) \leq f'_{j'}(C_{j'})$ which means $j \in J'$. This leads to:
+\begin{equation}
+v' = \max\limits_{j \not\in J'} {f_{j}(C_{j})} \leq \max\limits_{j \in J} {f_{j}(C_{j})} = v
+\end{equation}
+
+On the other hand, we have:
+\begin{equation}
+v = \max\limits_{j \in J} {f_{j}(C_{j})} \leq \max\limits_{j \in J} {f'_{j}(C_{j})} = v'
+\end{equation}
+since $f_{j} \leq f'_{j}$ for all j.
+
+Therefore, v = v'and \textbf{S have same object value for {\it I} and {\it I'}}
+
+And now assume S is a schedule produced for {\it I'}, let $J_{m}, J_{n}$ be any pair of jobs such that $J_{m} \to J_{n}$. If $C_{J_{m}} \geq $C_{J_{n}}$, then we must have:
+\begin{equation}
+v' = \max\limits_{j \not\in J'} {f_{j}(C_{j})} \leq \max\limits_{j \in J} {f_{j}(C_{j})} = v
+\end{equation}
+
+ Since $f'_{J{m}}(t) = \max{f'_{J_{m}}(t), f'_{J_{n}}(t + p_{J_{n}})}$, 
+\item{(b)}
+\item{(c)}
+\item{(d)}
+
+\end{itemize}
+
+\medskip
+
+\item{} [\underline{Problem 4}: $1|r_{j}; pmtn|\Sigma_{j} w_{j}C_{j}$]
+
+Consider the following instance where $\epsilon$ is a small positive number:
+\begin{center}
+\begin{tabular}{l*{4}{c}r}
+Job  & release date & weight & processing time \\
+\hline
+1    & 0 & 1 & 2               \\
+2    & 1 & 2 + $\epsilon$ & 2  \\
+3    & 2 & 2 + $\epsilon$ & 1  \\
+\end{tabular}
+\end{center}
+
+The optimal schedule is to process the jobs in the sequence 1, 3, 2 where the end cost comes at:
+\begin{equation}
+2*1 + 3 * (2 + \epsilon) + 5 * (2 + \epsilon)
+\end{equation}
+
+However, the schedule generated by WSRPT heuristic goes as: run job 1 from time 0 to 1; run job 2 to completion from time 1 to 3; run job 3 to completion from time 3 to 4; run job 1 from time 4 to 5 where the end cost comes at:
+\begin{equation}
+3 * (2 + \epsilon) + 4 * (2 + \epsilon) + 5 * 1
+\end{equation}
+
+\end{enumerate}
+
+\end{document}
+
